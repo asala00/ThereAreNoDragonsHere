@@ -23,7 +23,7 @@ public class enemyPatrol : MonoBehaviour
         //"Vector3.Distance" is how we set up a distance check. In the parenthesis we write two values: Point A and Point B, two different locations
         float playerDistance = Vector3.Distance(player.transform.position, transform.position); //player.transform.position, the current position of our Player.,,transform.position, the current position of this enemy.
         
-        if (playerDistance <= 15 && detected == false) //setting the enemy to detect the player when near
+        if (playerDistance <= 20 && detected == false) //setting the enemy to detect the player when near
         { detected = true;}
 
         if (detected == true)

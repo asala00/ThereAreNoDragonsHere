@@ -4,6 +4,7 @@ using UnityEngine;
 public class movingBullets : MonoBehaviour
 {
     [SerializeField] private float bulletSpeed;
+    [SerializeField] private float lifeSpan;
     private Rigidbody rb;
     private GameObject enemy;
 
@@ -11,35 +12,23 @@ public class movingBullets : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         rb.AddForce(Vector3.right *bulletSpeed );
+        
+        Invoke("Delete",lifeSpan);
     }
-    
-    //the bullets pushing back the enemy didnt work so used this instead
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("enemy"))
         {
             enemy = collision.gameObject;
-            rb = enemy.GetComponent<Rigidbody>(); //getting the rigidbody of our player
-    
-            enemy.SetActive(false);
-            
-            
-         //  enemyPush();
-           
+            enemy.SetActive(false); //prefabs cant be destroyed so deactivate
+            Destroy(gameObject);
         }
     }
-    
-    // private void enemyPush()
-    // {
-    //     //playerScript.enabled = false; //to disable movement
-    //
-    //     rb.AddForce (Vector3.up * 250) ; //will knock the player upward 
-    //     if (enemy.transform.position.x < transform.position.x)
-    //     { rb.AddForce(Vector3.right * -500); } //If the player is left of the enemy when colliding, shove the player to the left by 500.
-    //     else
-    //     { rb.AddForce (Vector3.right * 500) ;} //If the player is right of the enemy
-    //
-        //Invoke ("MoveAgain", 1);//calling the method, 1 is the delay time before it starts
+
+    private void Delete()
+    {
+        Destroy(gameObject);
     }
+}
 
 

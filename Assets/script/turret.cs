@@ -25,12 +25,12 @@ public class turret : MonoBehaviour
     void detectingPlayer()
     {
         float playerDistance = Vector3.Distance(player.transform.position, transform.position);
-        if (playerDistance < 15 && detected == false)
+        if (playerDistance < 17 && detected == false)
         {
             detected = true;
-            InvokeRepeating("Shooting",0,1); //time == delay time
+            InvokeRepeating("Shooting",0,0.5f); //time == delay time
         }
-        else if (playerDistance > 15)
+        else if (playerDistance > 17)
         {
             detected = false;
             CancelInvoke("Shooting");

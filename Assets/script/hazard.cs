@@ -11,8 +11,8 @@ public class hazard : MonoBehaviour
  
     void Update()
     {
-        ///When a Lerp is involved, Vector3 is no longer just X, Y, and Z values,
-        /// it is now starting position, ending position, and the speed at which traveling between these two takes place.
+        //When a Lerp is involved, Vector3 is no longer just X, Y, and Z values,
+        // it is now starting position, ending position, and the speed at which traveling between these two takes place.
         transform.position = Vector3. Lerp(startPoint, endPoint, Mathf.PingPong(Time.time
             * hazardSpeed, 1)) ;
     }

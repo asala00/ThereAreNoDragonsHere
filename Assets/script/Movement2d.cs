@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -12,10 +10,12 @@ public class Movement2d : MonoBehaviour
     [SerializeField] private float speed;
     private bool canJump;
     private Rigidbody rb;
+    [SerializeField] GameObject gun;
 
      private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        gun.SetActive(false);
     }
 
     private void Update()
@@ -45,23 +45,23 @@ public class Movement2d : MonoBehaviour
         }
     }
 
-    public int OrbAmount = 0;
+    [SerializeField] int orbAmount = 0;
     private void OnTriggerEnter(Collider myOrb)
     {
         if (myOrb.gameObject.CompareTag("collect"))
         { 
-            OrbAmount += 1; 
+            orbAmount += 1; 
             Destroy(myOrb.gameObject);
         }
     }
 
     private void OnCollisionEnter(Collision col)
     {
-        if (OrbAmount == 4 && col.gameObject.CompareTag("nextL"))
+        if (orbAmount == 4 && col.gameObject.CompareTag("nextL"))
         {
             SceneManager.LoadScene("Level2");
         }
-        else if (OrbAmount < 4 && col.gameObject.CompareTag("nextL"))
+        else if (orbAmount < 4 && col.gameObject.CompareTag("nextL"))
         {
             Debug.Log("jump off and try again");
         }
@@ -70,5 +70,12 @@ public class Movement2d : MonoBehaviour
         {
             SceneManager.LoadScene("StartLevel");
         }
+        if (col.gameObject.CompareTag("gunBox"))
+        {
+            Destroy(col.gameObject);
+            gun.SetActive(true);
+                
+        }
     }
-}
+    }
+

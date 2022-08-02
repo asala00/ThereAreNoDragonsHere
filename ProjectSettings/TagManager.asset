@@ -6,6 +6,8 @@ TagManager:
   tags:
   - collect
   - nextL
+  - enemy
+  - gunBox
   layers:
   - Default
   - TransparentFX

@@ -11,6 +11,7 @@ public class Movement2d : MonoBehaviour
     private bool canJump;
     private Rigidbody rb;
     [SerializeField] GameObject gun;
+    private float facing; //usung it later to make the player rotate and look booth ways
 
      private void Start()
     {
@@ -22,6 +23,13 @@ public class Movement2d : MonoBehaviour
     {
         Vector2 movement = new Vector2(Input.GetAxis ( "Horizontal") * speed, 0);
         rb.velocity = new Vector2(movement.x, rb.velocity.y);
+        
+        //using the player's Rigidbody to rotate it based on which way it is moving with its input\/
+        if (movement.x != 0)//if at any time we use horizontal inputs
+        {//then set our facing float to equal the angle at which the player is moving in.
+            facing = Mathf.Atan2(movement.x, 0) * Mathf.Rad2Deg;//calculating our horizontal inputs with nothing. Therefore, our code will recognize what direction the player is moving in on its horizontal axis.
+            rb.rotation = Quaternion.Euler(0,facing,0);//using the player's Rigidbody and rotate its Y axis to stay updated with what our facing value is, which is just the player's movement calculated into an angle.
+        }
 
         
         //jumping w rules

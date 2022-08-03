@@ -11,7 +11,7 @@ public class movingBullets : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        rb.AddForce(Vector3.right *bulletSpeed );
+        rb.AddForce(transform.right * bulletSpeed );//replaced vector3 with transform so it rotates wherever the player is facing+used right instead of forward cuz the guns orientation was based on the global and coldnt be changed
         
         Invoke("Delete",lifeSpan);
     }

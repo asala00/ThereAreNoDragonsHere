@@ -13,6 +13,8 @@ public class Movement2d : MonoBehaviour
     [SerializeField] GameObject gun;
     private float facing; //usung it later to make the player rotate and look booth ways
 
+    [SerializeField] private GameObject cmCam;
+
      private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -80,9 +82,9 @@ public class Movement2d : MonoBehaviour
         }
         if (col.gameObject.CompareTag("gunBox"))
         {
+            cmCam.SetActive(false); //switching cameras for enemies encounter
             Destroy(col.gameObject);
             gun.SetActive(true);
-                
         }
     }
     }

@@ -17,6 +17,7 @@ public class Movement2d : MonoBehaviour
     [SerializeField] private GameObject cmCam;
     [SerializeField] private GameObject cmCamHillShot;
     [SerializeField] private GameObject cmHillStay;
+    [SerializeField] private GameObject FinalCamView;
 
      private void Start()
     {
@@ -59,12 +60,16 @@ public class Movement2d : MonoBehaviour
     }
 
     [SerializeField] int orbAmount = 0;
-    private void OnTriggerEnter(Collider myOrb)
+    private void OnTriggerEnter(Collider col)
     {
-        if (myOrb.gameObject.CompareTag("collect"))
+        if (col.gameObject.CompareTag("collect"))
         { 
             orbAmount += 1; 
-            Destroy(myOrb.gameObject);
+            Destroy(col.gameObject);
+        }
+        if (col.gameObject.CompareTag("Finish"))
+        {
+            SceneManager.LoadScene(2);
         }
     }
 
@@ -92,6 +97,7 @@ public class Movement2d : MonoBehaviour
         if (col.gameObject.CompareTag("checkPoint"))
         {
             transform.position = spawnCheckPoint.position;
+            jumpForce += 150;
         }
 
         if (col.gameObject.CompareTag("camChange2"))
@@ -112,6 +118,14 @@ public class Movement2d : MonoBehaviour
             cmCamHillShot.SetActive(false);
             cmHillStay.SetActive(true);
         }
+
+        if (col.gameObject.CompareTag("camChange5"))
+        {
+            cmHillStay.SetActive(false);
+            FinalCamView.SetActive(true);
+        }
+
+        
     }
     }
 

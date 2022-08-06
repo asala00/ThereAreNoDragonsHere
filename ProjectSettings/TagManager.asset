@@ -12,6 +12,7 @@ TagManager:
   - camChange2
   - camChangeHill
   - camChange3
+  - camChange5
   layers:
   - Default
   - TransparentFX

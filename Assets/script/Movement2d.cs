@@ -11,9 +11,12 @@ public class Movement2d : MonoBehaviour
     private bool canJump;
     private Rigidbody rb;
     [SerializeField] GameObject gun;
+    [SerializeField] private Transform spawnCheckPoint;
     private float facing; //usung it later to make the player rotate and look booth ways
 
     [SerializeField] private GameObject cmCam;
+    [SerializeField] private GameObject cmCamHillShot;
+    [SerializeField] private GameObject cmHillStay;
 
      private void Start()
     {
@@ -85,6 +88,29 @@ public class Movement2d : MonoBehaviour
             cmCam.SetActive(false); //switching cameras for enemies encounter
             Destroy(col.gameObject);
             gun.SetActive(true);
+        }
+        if (col.gameObject.CompareTag("checkPoint"))
+        {
+            transform.position = spawnCheckPoint.position;
+        }
+
+        if (col.gameObject.CompareTag("camChange2"))
+        {
+            Destroy(col.gameObject);
+            cmCam.SetActive(true); //changing back to main cam for a bit
+        }
+
+        if (col.gameObject.CompareTag("camChangeHill"))
+        {
+            Destroy(col.gameObject);
+            cmCamHillShot.SetActive(true);
+        }
+
+        if (col.gameObject.CompareTag("camChange3"))
+        {
+            Destroy(col.gameObject);
+            cmCamHillShot.SetActive(false);
+            cmHillStay.SetActive(true);
         }
     }
     }

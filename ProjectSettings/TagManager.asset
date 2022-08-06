@@ -8,6 +8,10 @@ TagManager:
   - nextL
   - enemy
   - gunBox
+  - checkPoint
+  - camChange2
+  - camChangeHill
+  - camChange3
   layers:
   - Default
   - TransparentFX

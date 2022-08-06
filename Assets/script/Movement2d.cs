@@ -121,6 +121,7 @@ public class Movement2d : MonoBehaviour
 
         if (col.gameObject.CompareTag("camChange5"))
         {
+            Destroy(col.gameObject);
             cmHillStay.SetActive(false);
             FinalCamView.SetActive(true);
         }
